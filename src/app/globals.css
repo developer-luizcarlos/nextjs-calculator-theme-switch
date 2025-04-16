@@ -1,3 +1,27 @@
+@import url(../styles/variables.css);
+
+.page.light-theme {
+  --color-bg-body: #ffffff;
+  --theme-switcher-bg: #181818;
+  --color-accent-primary: #fe5707;
+  --color-text-primary: #2b3036;
+  --color-bg-pad: #0e0e0e;
+  --color-text-actions: #38f4e0;
+  --color-text-operational: #d66964;
+  --color-bg-btn: #282b33;
+}
+
+.page.dark-theme {
+  --color-bg-body: #090909;
+  --theme-switcher-bg: #181818;
+  --color-accent-primary: #fe5707;
+  --color-text-primary: #fcfdff;
+  --color-bg-pad: #0e0e0e;
+  --color-text-actions: #38f4e0;
+  --color-text-operational: #d66964;
+  --color-bg-btn: #282b33;
+}
+
 html,
 body {
   min-height: 100vh;

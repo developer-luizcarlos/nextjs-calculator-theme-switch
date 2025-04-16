@@ -1,4 +1,4 @@
-import "./page.module.css";
+import "./page.css";
 
 const page: React.FC = () => {
   return <div></div>;

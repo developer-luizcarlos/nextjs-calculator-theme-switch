@@ -1,5 +1,8 @@
 import "./Calculator.css";
 
+// components importation
+// import Button from "../Button/Button";
+
 const Calculator: React.FC = () => {
   return (
     <article className="calc">

@@ -31,5 +31,6 @@
   -moz-border-radius: 28px 28px 10px 10px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
   padding: 1.6rem;
 }

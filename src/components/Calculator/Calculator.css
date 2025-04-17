@@ -8,20 +8,20 @@
 
 .calc__last-result {
   color: var(--color-text-primary);
+  display: block;
   font-size: 1.3rem;
   text-align: right;
-  display: block;
 }
 
 .calc__display {
   color: var(--color-text-primary);
-  font-size: 3rem;
   height: 100%;
-  width: 100%;
-  text-align: right;
+  font-size: 3rem;
   font-weight: 500;
+  text-align: right;
   padding-right: 5px;
   padding-bottom: 10px;
+  width: 100%;
 }
 
 .calc__pad {

@@ -8,7 +8,7 @@ const Calculator: React.FC = () => {
     <article className="calc">
       <div></div>
       <header className="calc__header">
-        <span className="calc__last-result">5.55</span>
+        <span className="calc__last-result">308 x 42</span>
         <input type="text" disabled value={"0.00"} className="calc__display" />
       </header>
       <div className="calc__pad">

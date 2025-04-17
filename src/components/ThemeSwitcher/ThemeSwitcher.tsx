@@ -7,10 +7,10 @@ import { PiMoonLight } from "react-icons/pi";
 const ThemeSwitcher: React.FC = () => {
   return (
     <div className="theme-switcher">
-      <span>
+      <span className="theme-switcher__span">
         <IoSunnyOutline className="theme-switcher__icon" />
       </span>
-      <span>
+      <span className="theme-switcher__span">
         <PiMoonLight className="theme-switcher__icon theme-switcher__icon--active" />
       </span>
     </div>

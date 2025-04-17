@@ -4,6 +4,7 @@
   gap: 5px;
   height: 100vh;
   min-width: 350px;
+  padding-top: 20px;
   width: min(500px, 100vw);
 }
 

@@ -2,11 +2,14 @@ import "./Calculator.css";
 
 // components importation
 import Button from "../Button/Button";
+import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
 
 const Calculator: React.FC = () => {
   return (
     <article className="calc">
-      <div></div>
+      <div>
+        <ThemeSwitcher />
+      </div>
       <header className="calc__header">
         <span className="calc__last-result">308 x 42</span>
         <input type="text" disabled value={"0.00"} className="calc__display" />

@@ -4,7 +4,7 @@
 
 .page.light-theme {
   --color-bg-body: #ffffff;
-  --theme-switcher-bg: #181818;
+  --color-bg-theme-switcher: #181818;
   --color-accent-primary: #fe5707;
   --color-text-primary: #2b3036;
   --color-bg-pad: #0e0e0e;
@@ -15,7 +15,7 @@
 
 .page.dark-theme {
   --color-bg-body: #090909;
-  --theme-switcher-bg: #181818;
+  --color-bg-theme-switcher: #181818;
   --color-accent-primary: #fe5707;
   --color-text-primary: #fcfdff;
   --color-bg-pad: #0e0e0e;

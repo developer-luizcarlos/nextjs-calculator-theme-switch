@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 // Theme provider importation
-import ThemeProvider from "@/contexts/ThemeContext/ThemeProvider";
+import ThemeContext from "@/contexts/ThemeContext";
 
 export const metadata: Metadata = {
   title: "Calculator project",
@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeContext>{children}</ThemeContext>
       </body>
     </html>
   );

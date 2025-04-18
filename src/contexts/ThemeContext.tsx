@@ -8,7 +8,7 @@ import { IThemeContext } from "@/types/ThemeContext/ThemeContextType";
 
 export const ThemeContextObject = createContext<IThemeContext | null>(null);
 
-const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
+const ThemeContext = ({ children }: { children: React.ReactNode }) => {
   const [theme, setTheme] = useState<ITheme>("light");
 
   const toggleTheme = () =>
@@ -21,4 +21,4 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default ThemeProvider;
+export default ThemeContext;

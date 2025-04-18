@@ -9,17 +9,6 @@
   width: fit-content;
 }
 
-.theme-switcher__span {
-  display: block;
-  cursor: pointer;
-  height: 100%;
-  width: 100%;
-}
-
-.theme-switcher__span:hover {
-  background-color: rgb(41, 39, 39);
-}
-
 .theme-switcher__icon {
   color: grey;
   cursor: pointer;

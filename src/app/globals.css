@@ -4,13 +4,13 @@
 
 .page.light-theme {
   --color-bg-body: #ffffff;
-  --color-bg-theme-switcher: #181818;
+  --color-bg-theme-switcher: #f9f9f9;
   --color-accent-primary: #fe5707;
   --color-text-primary: #2b3036;
-  --color-bg-pad: #0e0e0e;
+  --color-bg-pad: #f9f9f9;
   --color-text-actions: #38f4e0;
   --color-text-operational: #d66964;
-  --color-bg-btn: #282b33;
+  --color-bg-btn: #f7f7f7;
 }
 
 .page.dark-theme {

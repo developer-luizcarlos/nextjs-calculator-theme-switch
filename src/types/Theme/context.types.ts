@@ -1,4 +1,4 @@
-import { ITheme } from "../Theme/Theme";
+import { ITheme } from "./theme.types";
 
 export type IThemeContext = {
   theme: ITheme;

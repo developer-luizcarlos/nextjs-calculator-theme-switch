@@ -3,8 +3,8 @@
 import { createContext, useState } from "react";
 
 // Types importation
-import { ITheme } from "@/types/Theme/Theme";
-import { IThemeContext } from "@/types/ThemeContext/ThemeContextType";
+import { ITheme } from "@/types/Theme/index";
+import { IThemeContext } from "@/types/Theme/index";
 
 export const ThemeContextObject = createContext<IThemeContext | null>(null);
 

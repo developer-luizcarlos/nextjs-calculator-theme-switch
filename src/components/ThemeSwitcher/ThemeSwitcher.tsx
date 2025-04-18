@@ -14,7 +14,7 @@ import { IoSunnyOutline } from "react-icons/io5";
 import { PiMoonLight } from "react-icons/pi";
 
 const ThemeSwitcher: React.FC = () => {
-  const { theme } = useContext(ThemeContextObject)!;
+  const { theme, toggleTheme } = useContext(ThemeContextObject)!;
 
   return (
     <div className="theme-switcher">
@@ -24,6 +24,7 @@ const ThemeSwitcher: React.FC = () => {
             ? "theme-switcher__icon theme-switcher__icon--active"
             : "theme-switcher__icon"
         }
+        onClick={toggleTheme}
       />
       <PiMoonLight
         className={
@@ -31,6 +32,7 @@ const ThemeSwitcher: React.FC = () => {
             ? "theme-switcher__icon theme-switcher__icon--active"
             : "theme-switcher__icon"
         }
+        onClick={toggleTheme}
       />
     </div>
   );

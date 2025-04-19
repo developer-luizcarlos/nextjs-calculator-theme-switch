@@ -1,10 +1,18 @@
+"use client";
+
+// Stylesheet importation
 import "./Calculator.css";
+
+// Hook importation
+import { useCalculator } from "./useCalculator";
 
 // components importation
 import Button from "../Button/Button";
 import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
 
 const Calculator: React.FC = () => {
+  const { screenValue } = useCalculator();
+
   return (
     <article className="calc">
       <div>
@@ -12,7 +20,12 @@ const Calculator: React.FC = () => {
       </div>
       <header className="calc__header">
         <span className="calc__last-result">308 x 42</span>
-        <input type="text" disabled value={"0.00"} className="calc__display" />
+        <input
+          type="text"
+          disabled
+          value={screenValue}
+          className="calc__display"
+        />
       </header>
       <div className="calc__pad">
         <Button label="AC" role="action" />

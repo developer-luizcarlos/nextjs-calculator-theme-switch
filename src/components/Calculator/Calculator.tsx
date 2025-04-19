@@ -11,8 +11,12 @@ import Button from "../Button/Button";
 import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
 
 const Calculator: React.FC = () => {
-  const { screenValue, insertNumberToScreenCalc, insertMathCharToScreenCalc } =
-    useCalculator();
+  const {
+    screenValue,
+    insertNumberToScreenCalc,
+    insertMathCharToScreenCalc,
+    evaluateMathExpression,
+  } = useCalculator();
 
   return (
     <article className="calc">
@@ -55,7 +59,7 @@ const Calculator: React.FC = () => {
         <Button
           label="X"
           role="operational"
-          handleClick={() => insertMathCharToScreenCalc("*")}
+          handleClick={() => insertMathCharToScreenCalc("x")}
         />
         <Button
           label="4"
@@ -108,7 +112,11 @@ const Calculator: React.FC = () => {
           role="normal"
           handleClick={() => insertMathCharToScreenCalc(".")}
         />
-        <Button label="=" role="operational" handleClick={() => {}} />
+        <Button
+          label="="
+          role="operational"
+          handleClick={() => evaluateMathExpression()}
+        />
       </div>
     </article>
   );

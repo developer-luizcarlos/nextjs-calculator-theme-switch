@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { evaluateExpression } from "@/utils/calculator";
 
 export const useCalculator = () => {
   const [screenValue, setScreenValue] = useState("0");
@@ -26,5 +27,22 @@ export const useCalculator = () => {
     });
   };
 
-  return { screenValue, insertNumberToScreenCalc, insertMathCharToScreenCalc };
+  const evaluateMathExpression = () => {
+    const screenValueIsEmpty = screenValue.length === 0;
+    const lastScreenCalcIsMathChar = !isLastCharANumber();
+
+    if (screenValueIsEmpty || lastScreenCalcIsMathChar) return;
+
+    setScreenValue(() => {
+      const evaluatedExpression = evaluateExpression(screenValue);
+      return evaluatedExpression.toString();
+    });
+  };
+
+  return {
+    screenValue,
+    insertNumberToScreenCalc,
+    insertMathCharToScreenCalc,
+    evaluateMathExpression,
+  };
 };

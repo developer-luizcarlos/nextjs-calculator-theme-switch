@@ -11,7 +11,8 @@ import Button from "../Button/Button";
 import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
 
 const Calculator: React.FC = () => {
-  const { screenValue } = useCalculator();
+  const { screenValue, insertNumberToScreenCalc, insertMathCharToScreenCalc } =
+    useCalculator();
 
   return (
     <article className="calc">
@@ -28,26 +29,86 @@ const Calculator: React.FC = () => {
         />
       </header>
       <div className="calc__pad">
-        <Button label="AC" role="action" />
-        <Button label="&#8730;" role="action" />
-        <Button label="%" role="action" />
-        <Button label="+" role="operational" />
-        <Button label="7" role="normal" />
-        <Button label="8" role="normal" />
-        <Button label="9" role="normal" />
-        <Button label="X" role="operational" />
-        <Button label="4" role="normal" />
-        <Button label="5" role="normal" />
-        <Button label="6" role="normal" />
-        <Button label="-" role="operational" />
-        <Button label="1" role="normal" />
-        <Button label="2" role="normal" />
-        <Button label="3" role="normal" />
-        <Button label="+" role="operational" />
-        <Button label="&#10226;" role="normal" />
-        <Button label="0" role="normal" />
-        <Button label="." role="normal" />
-        <Button label="=" role="operational" />
+        <Button label="AC" role="action" handleClick={() => {}} />
+        <Button label="&#8730;" role="action" handleClick={() => {}} />
+        <Button label="%" role="action" handleClick={() => {}} />
+        <Button
+          label="+"
+          role="operational"
+          handleClick={() => insertMathCharToScreenCalc("+")}
+        />
+        <Button
+          label="7"
+          role="normal"
+          handleClick={() => insertNumberToScreenCalc("7")}
+        />
+        <Button
+          label="8"
+          role="normal"
+          handleClick={() => insertNumberToScreenCalc("8")}
+        />
+        <Button
+          label="9"
+          role="normal"
+          handleClick={() => insertNumberToScreenCalc("9")}
+        />
+        <Button
+          label="X"
+          role="operational"
+          handleClick={() => insertMathCharToScreenCalc("*")}
+        />
+        <Button
+          label="4"
+          role="normal"
+          handleClick={() => insertNumberToScreenCalc("4")}
+        />
+        <Button
+          label="5"
+          role="normal"
+          handleClick={() => insertNumberToScreenCalc("5")}
+        />
+        <Button
+          label="6"
+          role="normal"
+          handleClick={() => insertNumberToScreenCalc("6")}
+        />
+        <Button
+          label="-"
+          role="operational"
+          handleClick={() => insertMathCharToScreenCalc("-")}
+        />
+        <Button
+          label="1"
+          role="normal"
+          handleClick={() => insertNumberToScreenCalc("1")}
+        />
+        <Button
+          label="2"
+          role="normal"
+          handleClick={() => insertNumberToScreenCalc("2")}
+        />
+        <Button
+          label="3"
+          role="normal"
+          handleClick={() => insertNumberToScreenCalc("3")}
+        />
+        <Button
+          label="/"
+          role="operational"
+          handleClick={() => insertMathCharToScreenCalc("/")}
+        />
+        <Button label="&#10226;" role="normal" handleClick={() => {}} />
+        <Button
+          label="0"
+          role="normal"
+          handleClick={() => insertNumberToScreenCalc("7")}
+        />
+        <Button
+          label="."
+          role="normal"
+          handleClick={() => insertMathCharToScreenCalc(".")}
+        />
+        <Button label="=" role="operational" handleClick={() => {}} />
       </div>
     </article>
   );

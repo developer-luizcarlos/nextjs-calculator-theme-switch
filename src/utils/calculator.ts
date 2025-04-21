@@ -17,3 +17,24 @@ export const expressionFormat = (expression: string) => {
   }
   return expressionValue;
 };
+
+export const numberFormatter = (value: number): number => {
+  const formater = new Intl.NumberFormat("en-US", {
+    style: "decimal",
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 4,
+  });
+
+  const formatedValue = formater.format(value);
+
+  return parseFloat(formatedValue);
+};
+
+export const formatPossibleFloatResult = (
+  result: string | number
+): void | number => {
+  const res = typeof result === "number" ? result : parseFloat(result);
+  if (isNaN(res)) return;
+  const formatedValue = res === Math.floor(res) ? res : numberFormatter(res);
+  return formatedValue;
+};

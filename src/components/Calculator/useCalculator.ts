@@ -1,5 +1,8 @@
+import {
+  displayFormatPossibleFloatResult,
+  evaluateExpression,
+} from "@/utils/calculator";
 import { useState } from "react";
-import { evaluateExpression } from "@/utils/calculator";
 
 export const useCalculator = () => {
   const [screenValue, setScreenValue] = useState("0");
@@ -9,7 +12,8 @@ export const useCalculator = () => {
 
   const displayLastResult = (): void => {
     const result = evaluateExpression(screenValue);
-    const expression: string = `${screenValue} = ${result}`;
+    const formatedResult = displayFormatPossibleFloatResult(result);
+    const expression: string = `${screenValue} = ${formatedResult}`;
     setLastResult(expression);
   };
 
@@ -43,8 +47,9 @@ export const useCalculator = () => {
     if (screenValueIsEmpty || lastScreenCalcIsMathChar) return;
 
     setScreenValue(() => {
-      const evaluatedExpression = evaluateExpression(screenValue);
-      return evaluatedExpression.toString();
+      const result = evaluateExpression(screenValue);
+      const formatedResult = displayFormatPossibleFloatResult(result);
+      return formatedResult!;
     });
   };
 

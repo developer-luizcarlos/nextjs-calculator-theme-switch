@@ -30,11 +30,13 @@ export const numberFormatter = (value: number): number => {
   return parseFloat(formatedValue);
 };
 
-export const formatPossibleFloatResult = (
+export const displayFormatPossibleFloatResult = (
   result: string | number
-): void | number => {
+): void | string => {
   const res = typeof result === "number" ? result : parseFloat(result);
+
   if (isNaN(res)) return;
+
   const formatedValue = res === Math.floor(res) ? res : numberFormatter(res);
-  return formatedValue;
+  return formatedValue.toString();
 };

@@ -4,6 +4,8 @@ import { evaluateExpression } from "@/utils/calculator";
 export const useCalculator = () => {
   const [screenValue, setScreenValue] = useState("0");
 
+  const clearScreenCalc = () => setScreenValue("0");
+
   const isLastCharANumber = (): boolean => {
     const lastChar: string | undefined = screenValue.at(-1);
     if (lastChar === "" || lastChar === undefined) return false;
@@ -41,6 +43,7 @@ export const useCalculator = () => {
 
   return {
     screenValue,
+    clearScreenCalc,
     insertNumberToScreenCalc,
     insertMathCharToScreenCalc,
     evaluateMathExpression,

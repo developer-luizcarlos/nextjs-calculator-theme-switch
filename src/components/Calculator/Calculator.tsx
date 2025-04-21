@@ -13,6 +13,7 @@ import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
 const Calculator: React.FC = () => {
   const {
     screenValue,
+    clearScreenCalc,
     insertNumberToScreenCalc,
     insertMathCharToScreenCalc,
     evaluateMathExpression,
@@ -33,7 +34,11 @@ const Calculator: React.FC = () => {
         />
       </header>
       <div className="calc__pad">
-        <Button label="AC" role="action" handleClick={() => {}} />
+        <Button
+          label="AC"
+          role="action"
+          handleClick={() => clearScreenCalc()}
+        />
         <Button label="&#8730;" role="action" handleClick={() => {}} />
         <Button label="%" role="action" handleClick={() => {}} />
         <Button

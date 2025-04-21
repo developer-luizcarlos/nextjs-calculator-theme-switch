@@ -14,6 +14,8 @@ const Calculator: React.FC = () => {
   const {
     screenValue,
     clearScreenCalc,
+    lastResult,
+    displayLastResult,
     insertNumberToScreenCalc,
     insertMathCharToScreenCalc,
     evaluateMathExpression,
@@ -25,7 +27,7 @@ const Calculator: React.FC = () => {
         <ThemeSwitcher />
       </div>
       <header className="calc__header">
-        <span className="calc__last-result">308 x 42</span>
+        <span className="calc__last-result">{lastResult}</span>
         <input
           type="text"
           disabled
@@ -110,7 +112,7 @@ const Calculator: React.FC = () => {
         <Button
           label="0"
           role="normal"
-          handleClick={() => insertNumberToScreenCalc("7")}
+          handleClick={() => insertNumberToScreenCalc("0")}
         />
         <Button
           label="."
@@ -120,7 +122,10 @@ const Calculator: React.FC = () => {
         <Button
           label="="
           role="operational"
-          handleClick={() => evaluateMathExpression()}
+          handleClick={() => {
+            evaluateMathExpression();
+            displayLastResult();
+          }}
         />
       </div>
     </article>

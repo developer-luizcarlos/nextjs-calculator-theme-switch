@@ -17,6 +17,11 @@ export const useCalculator = () => {
     setLastResult(expression);
   };
 
+  const eraseLastDigitFromScreenCalc = () =>
+    setScreenValue(() =>
+      screenValue.length === 1 ? "0" : screenValue.slice(0, -1)
+    );
+
   const isLastCharANumber = (): boolean => {
     const lastChar: string | undefined = screenValue.at(-1);
     if (lastChar === "" || lastChar === undefined) return false;
@@ -57,6 +62,7 @@ export const useCalculator = () => {
     screenValue,
     clearScreenCalc,
     displayLastResult,
+    eraseLastDigitFromScreenCalc,
     lastResult,
     insertNumberToScreenCalc,
     insertMathCharToScreenCalc,

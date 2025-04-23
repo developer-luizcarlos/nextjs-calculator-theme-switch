@@ -15,11 +15,10 @@ const Calculator: React.FC = () => {
     screenValue,
     clearScreenCalc,
     lastResult,
-    displayLastResult,
     eraseLastDigitFromScreenCalc,
+    evaluateMathExpression,
     insertNumberToScreenCalc,
     insertMathCharToScreenCalc,
-    evaluateMathExpression,
   } = useCalculator();
 
   return (
@@ -43,7 +42,11 @@ const Calculator: React.FC = () => {
           handleClick={() => clearScreenCalc()}
         />
         <Button label="&#8730;" role="action" handleClick={() => {}} />
-        <Button label="%" role="action" handleClick={() => {}} />
+        <Button
+          label="%"
+          role="action"
+          handleClick={() => insertMathCharToScreenCalc("%")}
+        />
         <Button
           label="+"
           role="operational"
@@ -129,7 +132,6 @@ const Calculator: React.FC = () => {
           role="operational"
           handleClick={() => {
             evaluateMathExpression();
-            displayLastResult();
           }}
         />
       </div>

@@ -1,5 +1,7 @@
 import {
+  calculatePercentage,
   displayFormatPossibleFloatResult,
+  isValidPercentageExpression,
   evaluateExpression,
 } from "@/utils/calculator";
 import { useState } from "react";
@@ -51,21 +53,34 @@ export const useCalculator = () => {
 
     if (screenValueIsEmpty || lastScreenCalcIsMathChar) return;
 
+    const expression: string = screenValue;
+    if (isValidPercentageExpression(expression)) {
+      evaluatePercentage();
+      return;
+    }
+
     setScreenValue(() => {
       const result = evaluateExpression(screenValue);
       const formatedResult = displayFormatPossibleFloatResult(result);
       return formatedResult!;
     });
+    displayLastResult();
+  };
+
+  const evaluatePercentage = () => {
+    const expression: string = screenValue;
+    const result = calculatePercentage(expression);
+    setScreenValue(() => `${result}%`);
+    displayLastResult();
   };
 
   return {
     screenValue,
     clearScreenCalc,
-    displayLastResult,
     eraseLastDigitFromScreenCalc,
+    evaluateMathExpression,
     lastResult,
     insertNumberToScreenCalc,
     insertMathCharToScreenCalc,
-    evaluateMathExpression,
   };
 };

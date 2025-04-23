@@ -1,5 +1,13 @@
 import { evaluate } from "mathjs";
 
+export const calculatePercentage = (expression: string): string => {
+  const splittedExpression = expression.split("%");
+  const firstNumber = parseFloat(splittedExpression[0]);
+  const secondNumber = parseFloat(splittedExpression[1]);
+  const result = (firstNumber / secondNumber) * 100;
+  return displayFormatPossibleFloatResult(result) ?? "0";
+};
+
 export const evaluateExpression = (expression: string): number => {
   const formattedExpression = expressionFormat(expression);
   return evaluate(formattedExpression);
@@ -16,6 +24,11 @@ export const expressionFormat = (expression: string) => {
     expressionValue = expressionValue.replace(/X/gi, "*");
   }
   return expressionValue;
+};
+
+export const isValidPercentageExpression = (expression: string): boolean => {
+  const pattern = /\d+(\.\d+)?%\d+(\.\d+)?/g;
+  return pattern.test(expression);
 };
 
 export const numberFormatter = (value: number): number => {

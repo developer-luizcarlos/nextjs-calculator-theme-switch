@@ -41,7 +41,7 @@ const Calculator: React.FC = () => {
           role="action"
           handleClick={() => clearScreenCalc()}
         />
-        <Button label="&#8730;" role="action" handleClick={() => {}} />
+        <Button label="( )" role="action" handleClick={() => {}} />
         <Button
           label="%"
           role="action"

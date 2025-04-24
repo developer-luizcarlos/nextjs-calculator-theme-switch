@@ -1,4 +1,3 @@
-/* eslint-disable prefer-const */
 import {
   calculatePercentage,
   displayFormatPossibleFloatResult,
@@ -35,8 +34,9 @@ export const useCalculator = () => {
 
   const insertMathCharToScreenCalc = (character: string) => {
     const isLastCharNum: boolean = isLastCharANumber();
+    const lastScreenCalcChar: string = screenValue.at(-1)!;
 
-    if (!isLastCharNum) return;
+    if (!isLastCharNum && lastScreenCalcChar !== ")") return;
 
     setScreenValue((previousValue) => {
       return previousValue.concat(character);

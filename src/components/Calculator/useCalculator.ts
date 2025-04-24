@@ -12,8 +12,7 @@ export const useCalculator = () => {
 
   const clearScreenCalc = () => setScreenValue("0");
 
-  const displayLastResult = (): void => {
-    const result = evaluateExpression(screenValue);
+  const displayLastResult = (result: string | number): void => {
     const formatedResult = displayFormatPossibleFloatResult(result);
     const expression: string = `${screenValue} = ${formatedResult}`;
     setLastResult(expression);
@@ -90,14 +89,14 @@ export const useCalculator = () => {
       const formatedResult = displayFormatPossibleFloatResult(result);
       return formatedResult!;
     });
-    displayLastResult();
+    displayLastResult(evaluateExpression(screenValue));
   };
 
   const evaluatePercentage = () => {
     const expression: string = screenValue;
     const result = calculatePercentage(expression);
-    setScreenValue(() => `${result}%`);
-    displayLastResult();
+    setScreenValue(() => `${result}`);
+    displayLastResult(`${result}`);
   };
 
   return {

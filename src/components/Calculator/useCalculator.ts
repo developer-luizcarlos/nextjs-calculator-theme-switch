@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 import {
   calculatePercentage,
   displayFormatPossibleFloatResult,
@@ -32,11 +33,6 @@ export const useCalculator = () => {
     return !isNaN(lastCharToNumber);
   };
 
-  const insertNumberToScreenCalc = (value: string): void =>
-    setScreenValue((previousValue) => {
-      return previousValue === "0" ? value : previousValue.concat(value);
-    });
-
   const insertMathCharToScreenCalc = (character: string) => {
     const isLastCharNum: boolean = isLastCharANumber();
 
@@ -45,6 +41,29 @@ export const useCalculator = () => {
     setScreenValue((previousValue) => {
       return previousValue.concat(character);
     });
+  };
+
+  const insertNumberToScreenCalc = (value: string): void =>
+    setScreenValue((previousValue) => {
+      return previousValue === "0" ? value : previousValue.concat(value);
+    });
+
+  const insertParenthesesToScreenCalc = () => {
+    const indexOpenParentheses = screenValue!.lastIndexOf("(");
+    const indexCloseParentheses = screenValue!.lastIndexOf(")");
+
+    if (screenValue === "0") {
+      setScreenValue(() =>
+        indexOpenParentheses > indexCloseParentheses ? ")" : "("
+      );
+      return;
+    }
+
+    setScreenValue(() =>
+      indexOpenParentheses > indexCloseParentheses
+        ? screenValue + ")"
+        : screenValue + "("
+    );
   };
 
   const evaluateMathExpression = () => {
@@ -80,7 +99,8 @@ export const useCalculator = () => {
     eraseLastDigitFromScreenCalc,
     evaluateMathExpression,
     lastResult,
-    insertNumberToScreenCalc,
     insertMathCharToScreenCalc,
+    insertNumberToScreenCalc,
+    insertParenthesesToScreenCalc,
   };
 };

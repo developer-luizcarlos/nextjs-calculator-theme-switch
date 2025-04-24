@@ -18,16 +18,19 @@ export const evaluateExpression = (expression: string): number => {
 };
 
 export const expressionFormat = (expression: string) => {
-  let expressionValue: string = expression;
-  const hasMultiplyOperator = expression.match(/X/i);
-  const hasNotInvalidOperatorSymbols = hasMultiplyOperator === null;
+  let exp: string = expression;
+  const hasMultiplicationOperator = /X/i.test(exp);
+  const hasPercentageBetweenParentheses =
+    /\(\s*([\d.]+)\s*%\s*([\d.]+)\s*\)/.test(exp);
+  const hasPercentageOutsideParentheses = /([\d.]+)\s*%\s*([\d.]+)/.test(exp);
 
-  if (hasNotInvalidOperatorSymbols) return expression;
+  if (hasMultiplicationOperator) exp = exp.replace(/X/gi, "*");
+  if (hasPercentageBetweenParentheses)
+    exp = exp.replace(/\(\s*([\d.]+)\s*%\s*([\d.]+)\s*\)/g, "(($1/$2)*100)");
+  if (hasPercentageOutsideParentheses)
+    exp = exp.replace(/([\d.]+)\s*%\s*([\d.]+)/g, "(($1/$2)*100)");
 
-  if (hasMultiplyOperator) {
-    expressionValue = expressionValue.replace(/X/gi, "*");
-  }
-  return expressionValue;
+  return exp;
 };
 
 export const isValidPercentageExpression = (expression: string): boolean => {

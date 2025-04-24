@@ -10,7 +10,11 @@ export const calculatePercentage = (expression: string): string => {
 
 export const evaluateExpression = (expression: string): number => {
   const formattedExpression = expressionFormat(expression);
-  return evaluate(formattedExpression);
+  try {
+    return evaluate(formattedExpression);
+  } catch {
+    return 0;
+  }
 };
 
 export const expressionFormat = (expression: string) => {

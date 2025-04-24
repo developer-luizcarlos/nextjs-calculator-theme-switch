@@ -71,8 +71,13 @@ export const useCalculator = () => {
   const evaluateMathExpression = () => {
     const screenValueIsEmpty = screenValue.length === 0;
     const lastScreenCalcIsMathChar = !isLastCharANumber();
+    const lastScreenCalcChar = screenValue.at(-1)!;
 
-    if (screenValueIsEmpty || lastScreenCalcIsMathChar) return;
+    if (
+      screenValueIsEmpty ||
+      (lastScreenCalcIsMathChar && lastScreenCalcChar !== ")")
+    )
+      return;
 
     const expression: string = screenValue;
     if (isValidPercentageExpression(expression)) {

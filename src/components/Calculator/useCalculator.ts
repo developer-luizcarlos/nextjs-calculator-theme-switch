@@ -49,6 +49,8 @@ export const useCalculator = () => {
     });
 
   const insertParenthesesToScreenCalc = () => {
+    if (!isLastCharANumber()) return;
+
     const indexOpenParentheses = screenValue!.lastIndexOf("(");
     const indexCloseParentheses = screenValue!.lastIndexOf(")");
 

@@ -15,7 +15,7 @@ export default function Home() {
   const { theme } = useContext(ThemeContextObject)!;
 
   return (
-    <div className={theme === "light" ? "page light-theme" : "page dark-theme"}>
+    <div>
       <Calculator />
     </div>
   );

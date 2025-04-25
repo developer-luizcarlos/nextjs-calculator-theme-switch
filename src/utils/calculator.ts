@@ -1,23 +1,23 @@
 import { evaluate } from "mathjs";
 
-export const calculatePercentage = (expression: string): string => {
+export function calculatePercentage(expression: string): string {
   const splittedExpression = expression.split("%");
   const firstNumber = parseFloat(splittedExpression[0]);
   const secondNumber = parseFloat(splittedExpression[1]);
   const result = (firstNumber / secondNumber) * 100;
   return displayFormatPossibleFloatResult(result) ?? "0";
-};
+}
 
-export const evaluateExpression = (expression: string): number => {
+export function evaluateExpression(expression: string): number {
   const formattedExpression = expressionFormat(expression);
   try {
     return evaluate(formattedExpression);
   } catch {
     return 0;
   }
-};
+}
 
-export const expressionFormat = (expression: string) => {
+export function expressionFormat(expression: string) {
   let exp: string = expression;
   const hasMultiplicationOperator = /X/i.test(exp);
   const hasPercentageBetweenParentheses =
@@ -31,14 +31,14 @@ export const expressionFormat = (expression: string) => {
     exp = exp.replace(/([\d.]+)\s*%\s*([\d.]+)/g, "(($1/$2)*100)");
 
   return exp;
-};
+}
 
-export const isValidPercentageExpression = (expression: string): boolean => {
+export function isValidPercentageExpression(expression: string): boolean {
   const pattern = /\d+(\.\d+)?%\d+(\.\d+)?/g;
   return pattern.test(expression);
-};
+}
 
-export const numberFormatter = (value: number): number => {
+export function floatNumberFormatter(value: number): string {
   const formater = new Intl.NumberFormat("en-US", {
     style: "decimal",
     minimumFractionDigits: 1,
@@ -47,16 +47,17 @@ export const numberFormatter = (value: number): number => {
 
   const formatedValue = formater.format(value);
 
-  return parseFloat(formatedValue);
-};
+  return formatedValue;
+}
 
-export const displayFormatPossibleFloatResult = (
+export function displayFormatPossibleFloatResult(
   result: string | number
-): void | string => {
+): void | string {
   const res = typeof result === "number" ? result : parseFloat(result);
 
   if (isNaN(res)) return;
 
-  const formatedValue = res === Math.floor(res) ? res : numberFormatter(res);
+  const formatedValue =
+    res === Math.floor(res) ? res : floatNumberFormatter(res);
   return formatedValue.toString();
-};
+}

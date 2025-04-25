@@ -6,80 +6,79 @@ import {
 } from "@/utils/calculator";
 import { useState } from "react";
 
-export const useCalculator = () => {
+export function useCalculator() {
   const [screenValue, setScreenValue] = useState("0");
   const [lastResult, setLastResult] = useState("");
 
-  const clearScreenCalc = () => setScreenValue("0");
+  function clearScreenCalc() {
+    return setScreenValue("0");
+  }
 
-  const displayLastResult = (result: string | number): void => {
+  function displayLastResult(result: string | number): void {
     const formatedResult = displayFormatPossibleFloatResult(result);
     const expression: string = `${screenValue} = ${formatedResult}`;
     setLastResult(expression);
-  };
+  }
 
-  const eraseLastDigitFromScreenCalc = () =>
-    setScreenValue(() =>
-      screenValue.length === 1 ? "0" : screenValue.slice(0, -1)
+  function eraseLastDigitFromScreenCalc() {
+    return setScreenValue(() => screenValue.length === 1 ? "0" : screenValue.slice(0, -1)
     );
+  }
 
-  const isLastCharANumber = (): boolean => {
+  function isLastCharANumber(): boolean {
     const lastChar: string | undefined = screenValue.at(-1);
-    if (lastChar === "" || lastChar === undefined) return false;
+    if(lastChar === "" || lastChar === undefined) return false;
 
     const lastCharToNumber = parseFloat(lastChar);
     return !isNaN(lastCharToNumber);
-  };
+  }
 
-  const insertMathCharToScreenCalc = (character: string) => {
+  function insertMathCharToScreenCalc(character: string) {
     const isLastCharNum: boolean = isLastCharANumber();
     const lastScreenCalcChar: string = screenValue.at(-1)!;
 
-    if (!isLastCharNum && lastScreenCalcChar !== ")") return;
+    if(!isLastCharNum && lastScreenCalcChar !== ")") return;
 
     setScreenValue((previousValue) => {
       return previousValue.concat(character);
     });
-  };
+  }
 
-  const insertNumberToScreenCalc = (value: string): void =>
-    setScreenValue((previousValue) => {
+  function insertNumberToScreenCalc(value: string): void {
+    return setScreenValue((previousValue) => {
       return previousValue === "0" ? value : previousValue.concat(value);
     });
+  }
 
-  const insertParenthesesToScreenCalc = () => {
-    if (!isLastCharANumber()) return;
+  function insertParenthesesToScreenCalc() {
+    if(!isLastCharANumber()) return;
 
-    const indexOpenParentheses = screenValue!.lastIndexOf("(");
-    const indexCloseParentheses = screenValue!.lastIndexOf(")");
+    const indexOpenParentheses: number = screenValue!.lastIndexOf("(");
+    const indexCloseParentheses: number = screenValue!.lastIndexOf(")");
 
-    if (screenValue === "0") {
-      setScreenValue(() =>
-        indexOpenParentheses > indexCloseParentheses ? ")" : "("
+    if(screenValue === "0") {
+      setScreenValue(() => indexOpenParentheses > indexCloseParentheses ? ")" : "("
       );
       return;
     }
 
-    setScreenValue(() =>
-      indexOpenParentheses > indexCloseParentheses
-        ? screenValue + ")"
-        : screenValue + "("
+    setScreenValue(() => indexOpenParentheses > indexCloseParentheses
+      ? screenValue + ")"
+      : screenValue + "("
     );
-  };
+  }
 
-  const evaluateMathExpression = () => {
-    const screenValueIsEmpty = screenValue.length === 0;
-    const lastScreenCalcIsMathChar = !isLastCharANumber();
-    const lastScreenCalcChar = screenValue.at(-1)!;
+  function evaluateMathExpression() {
+    const isScreenValueEmpty: boolean = screenValue.length === 0;
+    const isLastScreenCalcMathChar: boolean = !isLastCharANumber();
+    const lastScreenCalcChar: string = screenValue.at(-1)!;
 
-    if (
-      screenValueIsEmpty ||
-      (lastScreenCalcIsMathChar && lastScreenCalcChar !== ")")
-    )
+    if(isScreenValueEmpty ||
+      (isLastScreenCalcMathChar && lastScreenCalcChar !== ")"))
       return;
 
     const expression: string = screenValue;
-    if (isValidPercentageExpression(expression)) {
+    if(isValidPercentageExpression(expression)) {
       evaluatePercentage();
       return;
     }
@@ -90,14 +89,14 @@ export const useCalculator = () => {
       return formatedResult!;
     });
     displayLastResult(evaluateExpression(screenValue));
-  };
+  }
 
-  const evaluatePercentage = () => {
+  function evaluatePercentage() {
     const expression: string = screenValue;
     const result = calculatePercentage(expression);
     setScreenValue(() => `${result}`);
     displayLastResult(`${result}`);
-  };
+  }
 
   return {
     screenValue,
@@ -109,4 +108,4 @@ export const useCalculator = () => {
     insertNumberToScreenCalc,
     insertParenthesesToScreenCalc,
   };
-};
+}

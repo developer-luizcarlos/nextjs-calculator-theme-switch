@@ -11,7 +11,7 @@ import { useContext } from "react";
 // Theme context importation
 import { ThemeContextObject } from "@/contexts/ThemeContext";
 
-const Page: React.FC = () => {
+export default function Home() {
   const { theme } = useContext(ThemeContextObject)!;
 
   return (
@@ -19,6 +19,4 @@ const Page: React.FC = () => {
       <Calculator />
     </div>
   );
-};
-
-export default Page;
+}

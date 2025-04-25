@@ -10,7 +10,7 @@ import { useCalculator } from "./useCalculator";
 import Button from "../Button/Button";
 import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
 
-const Calculator: React.FC = () => {
+export default function Calculator() {
   const {
     screenValue,
     clearScreenCalc,
@@ -142,6 +142,4 @@ const Calculator: React.FC = () => {
       </div>
     </article>
   );
-};
-
-export default Calculator;
+}

@@ -8,7 +8,6 @@ import { useCalculator } from "./useCalculator";
 
 // components importation
 import Button from "../Button/Button";
-import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
 
 export default function Calculator() {
   const {
@@ -25,9 +24,6 @@ export default function Calculator() {
 
   return (
     <article className="calc">
-      <div>
-        <ThemeSwitcher />
-      </div>
       <header className="calc__header">
         <span
           className="calc__last-result"

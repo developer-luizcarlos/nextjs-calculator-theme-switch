@@ -14,12 +14,13 @@ export default function Calculator() {
   const {
     screenValue,
     clearScreenCalc,
-    lastResult,
     eraseLastDigitFromScreenCalc,
     evaluateMathExpression,
     insertMathCharToScreenCalc,
     insertNumberToScreenCalc,
     insertParenthesesToScreenCalc,
+    lastResult,
+    switchBackToLastExpression,
   } = useCalculator();
 
   return (
@@ -28,7 +29,12 @@ export default function Calculator() {
         <ThemeSwitcher />
       </div>
       <header className="calc__header">
-        <span className="calc__last-result">{lastResult}</span>
+        <span
+          className="calc__last-result"
+          onClick={switchBackToLastExpression}
+        >
+          {lastResult}
+        </span>
         <input
           type="text"
           disabled

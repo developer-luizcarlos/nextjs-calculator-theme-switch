@@ -43,6 +43,16 @@ export function useCalculator() {
     displayLastResult(evaluateExpression(screenValue));
   }
 
+  function switchBackToLastExpression() {
+    const lastResultFirstSpace = lastResult.indexOf(" ");
+    const lastExpression: string =
+      lastResult !== "" && lastResultFirstSpace !== -1
+        ? lastResult.slice(0, lastResultFirstSpace)
+        : "0";
+
+    setScreenValue(lastExpression);
+  }
+
   function isLastCharANumber(): boolean {
     const lastChar: string | undefined = screenValue.at(-1);
     if (lastChar === "" || lastChar === undefined) return false;
@@ -97,5 +107,6 @@ export function useCalculator() {
     insertNumberToScreenCalc,
     insertParenthesesToScreenCalc,
     lastResult,
+    switchBackToLastExpression,
   };
 }

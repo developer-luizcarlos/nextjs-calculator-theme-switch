@@ -24,6 +24,25 @@ export function useCalculator() {
     );
   }
 
+  function evaluateMathExpression() {
+    const isScreenValueEmpty: boolean = screenValue.length === 0;
+    const isLastScreenCalcMathChar: boolean = !isLastCharANumber();
+    const lastScreenCalcChar: string = screenValue.at(-1)!;
+
+    if (
+      isScreenValueEmpty ||
+      (isLastScreenCalcMathChar && lastScreenCalcChar !== ")")
+    )
+      return;
+
+    setScreenValue(() => {
+      const result = evaluateExpression(screenValue);
+      const formatedResult = formatPossibleFloatResult(result);
+      return formatedResult!;
+    });
+    displayLastResult(evaluateExpression(screenValue));
+  }
+
   function isLastCharANumber(): boolean {
     const lastChar: string | undefined = screenValue.at(-1);
     if (lastChar === "" || lastChar === undefined) return false;
@@ -69,33 +88,14 @@ export function useCalculator() {
     );
   }
 
-  function evaluateMathExpression() {
-    const isScreenValueEmpty: boolean = screenValue.length === 0;
-    const isLastScreenCalcMathChar: boolean = !isLastCharANumber();
-    const lastScreenCalcChar: string = screenValue.at(-1)!;
-
-    if (
-      isScreenValueEmpty ||
-      (isLastScreenCalcMathChar && lastScreenCalcChar !== ")")
-    )
-      return;
-
-    setScreenValue(() => {
-      const result = evaluateExpression(screenValue);
-      const formatedResult = formatPossibleFloatResult(result);
-      return formatedResult!;
-    });
-    displayLastResult(evaluateExpression(screenValue));
-  }
-
   return {
     screenValue,
     clearScreenCalc,
     eraseLastDigitFromScreenCalc,
     evaluateMathExpression,
-    lastResult,
     insertMathCharToScreenCalc,
     insertNumberToScreenCalc,
     insertParenthesesToScreenCalc,
+    lastResult,
   };
 }

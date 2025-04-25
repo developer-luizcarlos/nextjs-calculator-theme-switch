@@ -1,8 +1,6 @@
 import {
-  calculatePercentage,
   evaluateExpression,
   formatPossibleFloatResult,
-  isValidPercentageExpression,
 } from "@/utils/calculator";
 import { useState } from "react";
 
@@ -82,25 +80,12 @@ export function useCalculator() {
     )
       return;
 
-    const expression: string = screenValue;
-    if (isValidPercentageExpression(expression)) {
-      evaluatePercentage();
-      return;
-    }
-
     setScreenValue(() => {
       const result = evaluateExpression(screenValue);
       const formatedResult = formatPossibleFloatResult(result);
       return formatedResult!;
     });
     displayLastResult(evaluateExpression(screenValue));
-  }
-
-  function evaluatePercentage() {
-    const expression: string = screenValue;
-    const result = calculatePercentage(expression);
-    setScreenValue(() => `${result}`);
-    displayLastResult(`${result}`);
   }
 
   return {

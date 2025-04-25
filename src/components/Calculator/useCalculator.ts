@@ -1,8 +1,8 @@
 import {
   calculatePercentage,
-  displayFormatPossibleFloatResult,
-  isValidPercentageExpression,
   evaluateExpression,
+  formatPossibleFloatResult,
+  isValidPercentageExpression,
 } from "@/utils/calculator";
 import { useState } from "react";
 
@@ -15,19 +15,20 @@ export function useCalculator() {
   }
 
   function displayLastResult(result: string | number): void {
-    const formatedResult = displayFormatPossibleFloatResult(result);
+    const formatedResult = formatPossibleFloatResult(result);
     const expression: string = `${screenValue} = ${formatedResult}`;
     setLastResult(expression);
   }
 
   function eraseLastDigitFromScreenCalc() {
-    return setScreenValue(() => screenValue.length === 1 ? "0" : screenValue.slice(0, -1)
+    return setScreenValue(() =>
+      screenValue.length === 1 ? "0" : screenValue.slice(0, -1)
     );
   }
 
   function isLastCharANumber(): boolean {
     const lastChar: string | undefined = screenValue.at(-1);
-    if(lastChar === "" || lastChar === undefined) return false;
+    if (lastChar === "" || lastChar === undefined) return false;
 
     const lastCharToNumber = parseFloat(lastChar);
     return !isNaN(lastCharToNumber);
@@ -37,7 +38,7 @@ export function useCalculator() {
     const isLastCharNum: boolean = isLastCharANumber();
     const lastScreenCalcChar: string = screenValue.at(-1)!;
 
-    if(!isLastCharNum && lastScreenCalcChar !== ")") return;
+    if (!isLastCharNum && lastScreenCalcChar !== ")") return;
 
     setScreenValue((previousValue) => {
       return previousValue.concat(character);
@@ -51,20 +52,22 @@ export function useCalculator() {
   }
 
   function insertParenthesesToScreenCalc() {
-    if(!isLastCharANumber()) return;
+    if (!isLastCharANumber()) return;
 
     const indexOpenParentheses: number = screenValue!.lastIndexOf("(");
     const indexCloseParentheses: number = screenValue!.lastIndexOf(")");
 
-    if(screenValue === "0") {
-      setScreenValue(() => indexOpenParentheses > indexCloseParentheses ? ")" : "("
+    if (screenValue === "0") {
+      setScreenValue(() =>
+        indexOpenParentheses > indexCloseParentheses ? ")" : "("
       );
       return;
     }
 
-    setScreenValue(() => indexOpenParentheses > indexCloseParentheses
-      ? screenValue + ")"
-      : screenValue + "("
+    setScreenValue(() =>
+      indexOpenParentheses > indexCloseParentheses
+        ? screenValue + ")"
+        : screenValue + "("
     );
   }
 
@@ -73,19 +76,21 @@ export function useCalculator() {
     const isLastScreenCalcMathChar: boolean = !isLastCharANumber();
     const lastScreenCalcChar: string = screenValue.at(-1)!;
 
-    if(isScreenValueEmpty ||
-      (isLastScreenCalcMathChar && lastScreenCalcChar !== ")"))
+    if (
+      isScreenValueEmpty ||
+      (isLastScreenCalcMathChar && lastScreenCalcChar !== ")")
+    )
       return;
 
     const expression: string = screenValue;
-    if(isValidPercentageExpression(expression)) {
+    if (isValidPercentageExpression(expression)) {
       evaluatePercentage();
       return;
     }
 
     setScreenValue(() => {
       const result = evaluateExpression(screenValue);
-      const formatedResult = displayFormatPossibleFloatResult(result);
+      const formatedResult = formatPossibleFloatResult(result);
       return formatedResult!;
     });
     displayLastResult(evaluateExpression(screenValue));

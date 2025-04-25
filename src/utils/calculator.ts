@@ -5,7 +5,7 @@ export function calculatePercentage(expression: string): string {
   const firstNumber = parseFloat(splittedExpression[0]);
   const secondNumber = parseFloat(splittedExpression[1]);
   const result = (firstNumber / secondNumber) * 100;
-  return displayFormatPossibleFloatResult(result) ?? "0";
+  return formatPossibleFloatResult(result) ?? "0";
 }
 
 export function evaluateExpression(expression: string): number {
@@ -50,7 +50,7 @@ export function floatNumberFormatter(value: number): string {
   return formatedValue;
 }
 
-export function displayFormatPossibleFloatResult(
+export function formatPossibleFloatResult(
   result: string | number
 ): void | string {
   const res = typeof result === "number" ? result : parseFloat(result);

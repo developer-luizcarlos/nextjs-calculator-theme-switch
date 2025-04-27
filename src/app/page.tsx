@@ -7,7 +7,7 @@ import Calculator from "@/components/Calculator/Calculator";
 
 export default function Home() {
   return (
-    <div>
+    <div className="page">
       <Calculator />
     </div>
   );

@@ -1,5 +1,5 @@
 // types importation
-import { ButtonRole } from "@/types/Button/ButtonRole";
+import { ButtonRole } from "@/components/Button/Button.types";
 
 export const defineClassName = (role: ButtonRole): string => {
   switch (role) {
